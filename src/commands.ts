@@ -143,12 +143,12 @@ export class JekyllComposeCommands {
         }
         // For later render template of the file for the front matter
         const file = await this.app.vault.create(filepath, "");
-        await this.app.workspace.getLeaf(false).openFile(file);
         await this.app.fileManager.processFrontMatter(file, (frontMatter) => {
             const defaultFrontMatter = generateDefaultFrontMatter();
             Object.assign(frontMatter, defaultFrontMatter);
             frontMatter.title = title.trim();
         });
+        await this.app.workspace.getLeaf(false).openFile(file);
         return file;
     }
 
